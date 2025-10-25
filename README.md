@@ -71,8 +71,5 @@ Puzzle Vault/
 - Make the progress bar visually visible
 - Fix navigation boundary logic
 
-## License
-
-MIT
 
 
