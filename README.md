@@ -1,21 +1,78 @@
-# Puzzle Vault 🧠
+# Puzzle Vault
 
-A tiny, browser-based puzzle app that loads riddles from `puzzles.json`.
+Welcome to Puzzle Vault — a small, beginner-friendly web app of riddles and puzzles created for learning and contribution.
 
-Simple and minimal — enjoy solving!
+## Features
 
----
+- Simple, responsive UI (HTML/CSS/JS)
+- Loads puzzles from `puzzles.json`
+- Navigation (Next / Previous), answer checking, and a progress indicator
 
-## Quick Start
+## Getting started
 
-You have two easy ways to run the app:
-
-1.  **Open Directly:** Double-click the `index.html` file in your browser.
-2.  **Serve Locally:** Run a simple HTTP server in the project folder and visit `http://localhost:8080`.
+### Installation
 
 ```bash
-# Option 1: Using npx (Node.js required)
-npx http-server -c-1 -p 8080
+git clone https://github.com/OpenSource-UIT/Hacktoberfest-25-4.git
+cd Hacktoberfest-25-4
+```
 
-# Option 2: Using Python (Python required)
-python -m http.server 8080
+Open `index.html` in your browser or serve the folder locally:
+
+## How to use
+
+- Read the puzzle displayed on the page
+- Type your answer and click "Check Answer"
+- Use "Show Answer" to reveal the solution (if available)
+- Navigate using Next / Previous buttons
+
+## Short list of issues (priority)
+
+### High
+- Puzzles not showing: the `showPuzzle()` function is currently disabled, so the UI does not populate puzzle text on load.
+- Show Answer unresponsive: script queries `show-ans` but the button id is `show-answer`, so the listener isn't attached.
+- Check Answer id typo: the Check button in HTML uses `chek-answer` (typo) and the script may not find it.
+
+### Medium
+- Progress indicator is invisible: `#progress` lacks a visible background color.
+- Navigation edge-case: Next handler can set `currentIndex` to `puzzles.length` (off-by-one).
+
+### Low
+- Minor responsive styling improvements suggested for small screens.
+
+## Project structure
+
+```
+Puzzle Vault/
+├── index.html
+├── style.css
+├── script.js
+├── puzzles.json
+└── README.md
+```
+
+## Testing your fixes
+
+1. Open the app (index.html or served)
+2. Reproduce the issue you fix
+3. Apply the change, reload, and verify the behavior
+4. Check DevTools console for errors
+
+## Contributing
+
+- One bug per PR; keep fixes focused
+- Add a short description of the change and how you tested it
+- Be respectful and provide helpful PR notes
+
+### Good first issues
+- Fix the `showPuzzle()` implementation
+- Attach the Show Answer listener correctly
+- Correct the Check Answer button id
+- Make the progress bar visually visible
+- Fix navigation boundary logic
+
+## License
+
+MIT
+
+
