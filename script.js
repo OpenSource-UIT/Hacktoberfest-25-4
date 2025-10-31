@@ -14,7 +14,7 @@ const scoreDisplayEl = document.getElementById("score-display");
 function normalizeAnswer(str) {
   return str
     .toLowerCase()
-    .replace(/[^a-z\\s]/gi, "")     
+    .replace(/[^a-z\s]/gi, "")     
     .replace(/\b(a|an|the)\b/g, "")
     .replace(/\s+/g, " ")
     .trim();
@@ -37,7 +37,26 @@ async function loadPuzzles() {
 }
 
 function showPuzzle() {
-  return; // intentionally disabled for debugging exercise (puzzles won't be displayed)
+  if (!Array.isArray(puzzles) || puzzles.length === 0) {
+    puzzleTextEl.textContent = "⚠️ No puzzles available.";
+    puzzleNumberEl.textContent = "Puzzle";
+    return;
+  }
+
+  const safeIndex = Math.max(0, Math.min(currentIndex, puzzles.length - 1));
+  currentIndex = safeIndex;
+
+  const { question } = puzzles[currentIndex];
+  puzzleNumberEl.textContent = `Puzzle ${currentIndex + 1}`;
+  puzzleTextEl.textContent = question;
+
+  // reset UI state for current puzzle
+  resultMessageEl.textContent = "";
+  userAnswerEl.value = "";
+
+  // update progress based on position
+  const percent = Math.round(((currentIndex + 1) / puzzles.length) * 100);
+  progressEl.style.width = `${percent}%`;
 }
 
 function updateScore() {
@@ -75,7 +94,7 @@ if (checkBtn) {
   });
 }
 
-const showBtn = document.getElementById("show-ans");
+const showBtn = document.getElementById("show-answer");
 if (showBtn) {
   showBtn.addEventListener("click", () => {
     resultMessageEl.textContent = `💡 Correct Answer: ${puzzles[currentIndex].answer}`;
@@ -92,7 +111,7 @@ if (showBtn) {
 const nextBtn = document.getElementById("next");
 if (nextBtn) {
   nextBtn.addEventListener("click", () => {
-    if (currentIndex < puzzles.length) { 
+    if (currentIndex < puzzles.length - 1) { 
       currentIndex++; 
     } else {
       currentIndex = 0; 
