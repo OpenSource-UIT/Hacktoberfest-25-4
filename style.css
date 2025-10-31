@@ -95,4 +95,5 @@ p {
 #progress {
   height: 10px;
   width: 0%;
+  background-color: #00e676;
 }
